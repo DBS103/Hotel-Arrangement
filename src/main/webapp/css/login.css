@@ -1,0 +1,25 @@
+@charset "UTF-8";
+
+body{
+	background:url('../picture/timg.jpg');	
+	background-size:100%;
+	
+}
+span{
+	font-size: 14px;
+	color:red;
+}
+table{
+	width：200px;
+	margin: 100px auto 10px auto;
+	text-align: center;
+}
+a{
+	text-decoration: none;
+	color:blue;
+	font-size: 14px;
+}
+a:hover{
+	text-decoration: none;
+	color:red;
+}
