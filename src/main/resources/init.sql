@@ -80,7 +80,7 @@ foreign key (typeid ) references roomtype (typeid)
 --顾客表
 
 create table customer (
-clientno char(10) primary key,
+clientno int primary key,
 cname varchar(20) not null,
 csex char(2) default '男' check (csex = '男'
 or csex = '女'),
@@ -123,7 +123,7 @@ otext  text
 --退房表
 
 create table outhistory (
-clientno char(10) not null,
+clientno int not null,
 roomid int not null,
 empno  int not null,
 cotime datetime default now(),
