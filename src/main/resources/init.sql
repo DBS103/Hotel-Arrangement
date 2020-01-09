@@ -1,8 +1,9 @@
-﻿--1.
+数据库名：hotel
+--1.
 --部门表
 
 create table duty (
-deptno  int primary key,
+deptno  int primary key ,
 dname  varchar(50)  not null
 );
 
@@ -80,7 +81,7 @@ foreign key (typeid ) references roomtype (typeid)
 --顾客表
 
 create table customer (
-clientno int primary key,
+clientno int primary key auto_increment,
 cname varchar(20) not null,
 csex char(2) default '男' check (csex = '男'
 or csex = '女'),
@@ -123,12 +124,12 @@ otext  text
 --退房表
 
 create table outhistory (
-clientno int not null,
+clientno int not null auto_increment,
 roomid int not null,
 empno  int not null,
 cotime datetime default now(),
 cotext text,
-primary key(clientno,roomid),
+primary key(clientno,roomid，datetime),
 foreign key (empno) references employee(empno),
 foreign key (clientno) references customer (clientno),
 foreign key (roomid) references room (roomid)
