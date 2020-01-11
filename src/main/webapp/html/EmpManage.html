@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>酒店工作人员信息管理</title>
+	<script src="../js/vue.min.js"></script>
+	<link rel="stylesheet" href="../css/bootstrap-3.3.7.css">
+</head>
+<body>
+
+	<div id="app">
+	
+		<div class="panel panel-primary">
+			<div class="panel-heading">
+				<h3 class="panel-title">酒店工作人员信息管理</h3>
+			</div>
+			<div class="panel-body form-inline">
+				<label>
+					Empno:<input type="text" class="form-control" v-model="empno">
+				</label>
+				<label>
+					Ename:<input type="text" class="form-control" v-model="ename">
+				</label>
+				<label>
+					<!-- @keyup.enter 键盘点击enter事件 -->
+					Edept:<select class="form-control" v-model="edept" @keyup.enter="add">
+							<option value="管理员">管理员</option>
+							<option value="前台">前台</option>
+							<option value="房管">房管</option>
+							<option value="收银员">收银员</option>
+						</select>
+				</label>
+				
+				<input type="button" value="添加" class="btn btn-primary" @click="add" >
+				
+				<label>
+					搜索:<input type="text" class="form-control" v-model="keywords" v-focus v-color="'green'" >
+				</label>
+			</div>
+		</div>
+	
+		<table class="table table-borderred table-hover table-striped">
+			<thead>
+				<tr>
+					<th>Empno</th>
+					<th>Ename</th>
+					<th>Edept</th>
+					<th>操作</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr v-for="item in search(keywords)" :key="item.empno">
+					<td>{{item.empno}}</td>
+					<td v-text="item.ename"></td>
+					<td v-text="item.edept"></td>
+					<!-- click.prevent防止页面刷新 -->
+					<td>
+						<a href="" @click.prevent="del(item.empno)">删除</a>
+						<a href="" @click.prevent="upd(item.empno)">修改</a>
+					</td>
+				</tr>
+			</tbody>
+		</table>
+	</div>
+	
+	
+	<script type="text/javascript">
+	
+		
+		//自定义属性，必须要加v-XXX  这是全局！！！，在new Vue中可以写私有的
+		//使用Vue.directive定义全局的指令 v-focus
+		Vue.directive('focus',{
+			bind : function(el){ //这里一般写css
+				//el.style.color = 'blue'
+			},
+			inserted : function(el){ //这里一般写js
+				el.focus()
+			},
+			updated : function(el){}
+			
+		})
+		
+		//使用Vue.directive定义全局的指令 v-color
+		Vue.directive('color',{
+			bind : function(el,binding){//binding的名字可以改变，只要和下面的对应就行了
+				//el.style.color = 'red'
+				//binding.value = v-color="'green'"中的green
+				//green要加单引号，就像上面‘red’加了单引号一个意思
+				el.style.color = binding.value
+			},
+			inserted : function(el){
+				
+			},
+			updated : function(el){}
+			
+		})
+	
+		var a = new Vue({
+			el : '#app',
+			data : {
+				empno: '',
+				ename: '',
+				edept:'',
+				keywords: '',
+				list : [
+					{empno : 1 , ename : '张三', edept : '前台' },
+					{empno : 2 , ename : '李四', edept : '房管'  },
+					{empno : 3 , ename : '王五', edept : '收银'  },
+					{empno : 4 , ename : '马六', edept : '管理员'  },
+					{empno : 5 , ename : '冯七', edept : '前台'  },
+					{empno : 6 , ename : '周八', edept : '收银'  },
+					{empno : 7 , ename : '小明', edept : '房管'  },
+					{empno : 8 , ename : '小红', edept : '房管'  }
+				]
+			},
+			methods : {
+				add(){
+					var emp = { empno: this.empno , ename : this.ename , edept : this.edept}
+					this.list.push(emp)
+					//当添加完毕后，让id和name的text框变成空的
+					this.empno = ""
+					this.ename = ""
+					this.edept = ""
+				},
+				del(empno){
+					this.list.some((item,i) => {
+						if (item.empno == empno) {
+							//从索引为i的开始删，删除一个
+							this.list.splice(i,1)
+							return true;
+						}
+					})
+				},
+				upd(empno){
+					this.list.some((item,i) =>{
+						if(item.empno == empno){
+							
+						}
+					}) 
+				},
+				search(keywords) {
+					var newList = []
+					this.list.forEach(item => {
+						if(item.ename.indexOf(keywords) != -1) {
+							newList.push(item)
+						}
+					})
+					return newList;
+				}
+			},
+			directives : {
+				//定义私有的属性
+				'font' : {
+					bind : function(el,binding) {
+						el.style.color = binding.value
+					}
+				}
+			}
+			
+		});
+		
+		//刷新页面时，使文本框获得焦点
+		//document.getElementById("search").focus()
+		
+	</script>
+	
+	
+
+</body>
+</html>
