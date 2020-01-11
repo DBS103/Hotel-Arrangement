@@ -7,7 +7,7 @@
   <version>0.0.1-SNAPSHOT</version>
   <name>Hotel Maven Webapp</name>
   <url>http://maven.apache.org</url>
- <properties>
+  <properties>
   	<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
   	<maven.compiler.encoding>UTF-8</maven.compiler.encoding>
   	<java.version>10</java.version>
@@ -82,6 +82,11 @@
     <version>3.5.0</version>
 	</dependency>
   	<dependency>
+    <groupId>org.mybatis</groupId>
+    <artifactId>mybatis-spring</artifactId>
+    <version>2.0.0</version>
+	</dependency>
+  	<dependency>
     <groupId>log4j</groupId>
     <artifactId>log4j</artifactId>
     <version>1.2.17</version>
@@ -96,7 +101,35 @@
 		<artifactId>standard</artifactId>
 		<version>1.1.2</version>
 	</dependency>
-	
+	 <dependency>
+            <groupId>com.fasterxml.jackson.core</groupId>
+            <artifactId>jackson-core</artifactId>
+            <version>2.9.8</version>
+         </dependency>
+         <dependency>
+            <groupId>com.fasterxml.jackson.core</groupId>
+            <artifactId>jackson-annotations</artifactId>
+            <version>2.9.8</version>
+        </dependency>
+        <dependency>
+            <groupId>com.fasterxml.jackson.core</groupId>
+            <artifactId>jackson-databind</artifactId>
+            <version>2.9.8</version>
+        </dependency>
+         <dependency>  
+	        <groupId>org.codehaus.jackson</groupId>  
+	        <artifactId>jackson-mapper-asl</artifactId>  
+	        <version>1.9.8</version>  
+	        <type>jar</type>  
+	        <scope>compile</scope>  
+	 </dependency>  
+	<dependency>
+	    <groupId>org.codehaus.jackson</groupId>
+	    <artifactId>jackson-core-asl</artifactId>
+	    <version>1.9.8</version>
+	    <type>jar</type>  
+	    <scope>compile</scope>  
+	</dependency>
         
     <dependency>
       <groupId>junit</groupId>

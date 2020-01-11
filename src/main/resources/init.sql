@@ -1,17 +1,10 @@
---数据库名：hotel
 --1.
 --部门表
 
 create table duty (
-deptno  int primary key ,
+deptno  int primary key,
 dname  varchar(50)  not null
 );
-
-insert into duty values(1,'管理员');
-insert into duty values(2,'房管');
-insert into duty values(3,'前台');
-insert into duty values(4,'收银员');
-
 ----------------------------------------------------------
 --2.
 --员工表
@@ -56,12 +49,6 @@ tcount  int ,
 trcount  int ,
 ttext  text
 );
-
-insert into roomtype values('1','单人间',168,20,20,'有wifi温暖舒适');
-insert into roomtype values('2','双人标准间',268,20,20,'有wifi温暖舒适');
-insert into roomtype values('3','豪华双人间',288,20,20,'有wifi温暖舒适');
-insert into roomtype values('4','豪华三人间',368,20,20,'有wifi温暖舒适');
-insert into roomtype values('5','总统套房',568,20,20,'有wifi温暖舒适');
 ----------------------------------------------------------
 
 --4.
@@ -81,7 +68,7 @@ foreign key (typeid ) references roomtype (typeid)
 --顾客表
 
 create table customer (
-clientno int primary key auto_increment,
+clientno char(10) primary key,
 cname varchar(20) not null,
 csex char(2) default '男' check (csex = '男'
 or csex = '女'),
@@ -124,12 +111,12 @@ otext  text
 --退房表
 
 create table outhistory (
-clientno int not null auto_increment,
+clientno char(10) not null,
 roomid int not null,
 empno  int not null,
 cotime datetime default now(),
 cotext text,
-primary key(clientno,roomid，datetime),
+primary key(clientno,roomid),
 foreign key (empno) references employee(empno),
 foreign key (clientno) references customer (clientno),
 foreign key (roomid) references room (roomid)
