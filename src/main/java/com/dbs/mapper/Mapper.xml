@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+ "http://mybatis.org/dtd/mybatis-3-mapper.dtd"> 
+<mapper namespace="com.dbs.mapper.Mapper">
+	<select id="findCustomerById" parameterType="Integer" resultType="com.dbs.pojo.Customer">
+	select * from customer where clientno=#{clientno}
+	</select>
+	<select id="selectCustomer" resultType="com.dbs.pojo.Customer">
+	select * from Customer
+	</select>
+	<insert id="addCustomer" parameterType="com.dbs.pojo.Customer">
+	insert into customer(cname,csex,cidentity,cpnum,ctext)
+	values(#{cname},#{csex},#{cidentity},#{cpnum},#{ctext})
+	</insert>
+	<delete id="deleteCustomerByid" parameterType="Integer" >
+	delete from Customer where clientno=#{clientno}
+	</delete>
+	<update id="updateCustomerByid" parameterType="com.dbs.pojo.Customer">
+	update Customer set cname=#{cname},csex=#{csex},cidentity=#{cidentity},cpnum=#{cpnum},ctext=#{ctext}
+	where clientno=#{clientno}
+	</update>
+	
+	<select id="selectRoomType" resultType="com.dbs.pojo.Room">
+	select roomid,rcondition from room 
+	</select>
+	
+	<insert id="addOrders" parameterType="com.dbs.pojo.Orders"> 
+	insert into orders(orderid,empno,clientno,roomid,otime,ocash,otext,ocondition)
+values(#{orderid},#{empno},#{clientno},#{roomid},#{otime},#{ocash},#{ocash},#{ocash});
+	</insert>
+	<update id="updateOrders" parameterType="com.dbs.pojo.Orders">
+	update orders 
+	</update>
+	
+	
+</mapper>
+
