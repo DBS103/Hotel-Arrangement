@@ -6,6 +6,7 @@
 	</typeAliases>
 	<mappers>
 		<mapper resource="com\dbs\mapper\EmpMapper.xml"/>
+		<mapper resource="com\dbs\mapper\Mapper.xml"/>
 	</mappers>
 	
 </configuration>
