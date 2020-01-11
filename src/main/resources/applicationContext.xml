@@ -57,7 +57,7 @@
 	</bean>
 	
 	<bean id="CustomerMapper" class="org.mybatis.spring.mapper.MapperFactoryBean">
-		<property name="mapperInterface1" value="com.dbs.mapper.Mapper"></property>
+		<property name="mapperInterface" value="com.dbs.mapper.Mapper"></property>
 		<!-- 注入SqlSessionFactory的对象实例 -->
 		<property name="sqlSessionFactory" ref="sqlSessionFactory"></property>
 	</bean>
