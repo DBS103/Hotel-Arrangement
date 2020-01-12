@@ -4,9 +4,13 @@
 	<typeAliases>
 		<package name="com.dbs.mapper.EmpMapper"/>
 	</typeAliases>
+	<typeAliases>
+		<typeAlias type="com.dbs.entity.Orders" alias="orders"></typeAlias>
+	</typeAliases>
 	<mappers>
 		<mapper resource="com\dbs\mapper\EmpMapper.xml"/>
 		<mapper resource="com\dbs\mapper\Mapper.xml"/>
+		<mapper resource="com/dbs/mapper/OrdersMapper.xml"/>	
 	</mappers>
 	
 </configuration>
