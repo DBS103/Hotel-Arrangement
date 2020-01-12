@@ -28,9 +28,7 @@
 	insert into orders(orderid,empno,clientno,roomid,otime,ocash,otext,ocondition)
 values(#{orderid},#{empno},#{clientno},#{roomid},#{otime},#{ocash},#{ocash},#{ocash});
 	</insert>
-	<update id="updateOrders" parameterType="com.dbs.pojo.Orders">
-	update orders 
-	</update>
+	
 	
 	
 </mapper>

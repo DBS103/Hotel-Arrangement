@@ -4,12 +4,15 @@
     xmlns:p="http://www.springframework.org/schema/p"
     xmlns:tx="http://www.springframework.org/schema/tx"
     xmlns:context="http://www.springframework.org/schema/context"
-    xsi:schemaLocation="http://www.springframework.org/schema/beans
+    xsi:schemaLocation="
+    http://www.springframework.org/schema/beans
     http://www.springframework.org/schema/beans/spring-beans.xsd
     http://www.springframework.org/schema/context
     http://www.springframework.org/schema/context/spring-context.xsd
     http://www.springframework.org/schema/tx
+    http://www.springframework.org/schema/tx/spring-tx.xsd">
      http://www.springframework.org/schema/tx/spring-tx.xsd">
+
 
 <!-- 读取jdbc.properties -->
 <context:property-placeholder location="classpath:jdbc.properties" system-properties-mode="FALLBACK"
@@ -51,6 +54,17 @@
 	<!-- Mapper代理开发(基于MapperFactoryBean) -->
 	<bean id="EmployeeMapper" class="org.mybatis.spring.mapper.MapperFactoryBean">
 		<property name="mapperInterface" value="com.dbs.mapper.EmpMapper"></property>
+
+
+		<property name="sqlSessionFactory" ref="sqlSessionFactory"></property>
+	</bean>
+	<bean id="CustomerMapper" class="org.mybatis.spring.mapper.MapperFactoryBean">
+		<property name="mapperInterface" value="com.dbs.mapper.Mapper"></property>
+
+		<!-- 注入SqlSessionFactory的对象实例 -->
+		<property name="sqlSessionFactory" ref="sqlSessionFactory"></property>
+	</bean>
+
 		<!-- 注入SqlSessionFactory的对象实例 -->
 		<property name="sqlSessionFactory" ref="sqlSessionFactory"></property>
 	</bean>
@@ -68,4 +82,9 @@
 	<bean id="ordersService" class="com.dbs.service.OrdersServiceImp">
 		<property name="omapper" ref="omapper"></property>
 	</bean>
+<<<<<<< HEAD
+=======
+
+
+>>>>>>> e1529c6a43ac71903c81a1a9c332d4415dc8d938
 </beans>
