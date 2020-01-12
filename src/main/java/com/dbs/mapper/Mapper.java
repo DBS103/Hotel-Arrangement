@@ -24,8 +24,9 @@ public interface Mapper {
 	
 	//创建订单
 	boolean addOrders(Orders orders);
-	//修改订单
-	boolean updateOrders(Orders orders);
+	
+	
+	
 	
 	
 

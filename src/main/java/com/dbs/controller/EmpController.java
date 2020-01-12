@@ -19,7 +19,7 @@ public class EmpController {
 	
 	@Test
 	public void testOne() {
-		System.out.println(this.empSer.findEmpByNo(1));
+		System.out.println(this.empSer.findEmpByNo(5));
 		
 		
 	}
@@ -43,7 +43,7 @@ public class EmpController {
 		ApplicationContext act = new ClassPathXmlApplicationContext("applicationContext.xml");
 		EmpMapper empMapper= act.getBean(EmpMapper.class);
 		Employee emp = new Employee();
-		emp.setEmpno(1);
+		emp.setEmpno(5);
 		emp.setDeptno("3");
 		emp.setEname("gwh");
 		emp.setEsex("ÄÐ");
@@ -58,7 +58,7 @@ public class EmpController {
 		ApplicationContext act = new ClassPathXmlApplicationContext("applicationContext.xml");
 		EmpMapper empMapper= act.getBean(EmpMapper.class);
 		Employee emp = new Employee();
-		emp.setEmpno(1);
+		emp.setEmpno(5);
 		emp.setDeptno("3");
 		emp.setEname("gwh");
 		emp.setEsex("ÄÐ");
