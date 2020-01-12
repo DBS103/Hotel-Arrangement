@@ -2,9 +2,8 @@ package com.dbs.service;
 
 import java.util.List;
 
-import com.dbs.entity.Orders;
-import com.dbs.entity.Outhistory;
-import com.dbs.entity.Room;
+import com.dbs.pojo.Orders;
+
 
 
 public interface OrdersService {

@@ -12,8 +12,7 @@
      http://www.springframework.org/schema/tx/spring-tx.xsd">
 
 <!-- 读取jdbc.properties -->
-<context:property-placeholder location="classpath:jdbc.properties" 
-	    system-properties-mode="FALLBACK"
+<context:property-placeholder location="classpath:jdbc.properties" system-properties-mode="FALLBACK"
     /> 
 
 <!-- 配置数据源 -->
@@ -66,8 +65,7 @@
 		<property name="mapperInterface" value="com.dbs.mapper.OrdersMapper"></property>
 		<property name="sqlSessionFactory" ref="sqlSessionFactory"></property>
 	</bean>
-	<bean id="ordersService" class="com.dbs.serviceImp.OrdersServiceImp">
+	<bean id="ordersService" class="com.dbs.service.OrdersServiceImp">
 		<property name="omapper" ref="omapper"></property>
 	</bean>
-
 </beans>
