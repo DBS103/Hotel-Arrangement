@@ -7,8 +7,8 @@
     xsi:schemaLocation="http://www.springframework.org/schema/beans
     http://www.springframework.org/schema/beans/spring-beans.xsd
     http://www.springframework.org/schema/context
-     http://www.springframework.org/schema/context/spring-context.xsd
-     http://www.springframework.org/schema/tx
+    http://www.springframework.org/schema/context/spring-context.xsd
+    http://www.springframework.org/schema/tx
      http://www.springframework.org/schema/tx/spring-tx.xsd">
 
 <!-- 读取jdbc.properties -->
@@ -57,7 +57,7 @@
 	</bean>
 	
 	<bean id="CustomerMapper" class="org.mybatis.spring.mapper.MapperFactoryBean">
-		<property name="mapperInterface1" value="com.dbs.mapper.Mapper"></property>
+		<property name="mapperInterface" value="com.dbs.mapper.Mapper"></property>
 		<!-- 注入SqlSessionFactory的对象实例 -->
 		<property name="sqlSessionFactory" ref="sqlSessionFactory"></property>
 	</bean>

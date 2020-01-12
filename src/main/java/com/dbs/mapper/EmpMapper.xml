@@ -13,7 +13,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	</insert>
 	
 	<update id="editEmp" parameterType="com.dbs.pojo.Employee">
-		update employee deptno=#{deptno},ename=#{ename},epswd=#{epswd},esex=#{esex},epnum=#{epnum} where empno=#{empno}
+		update employee set deptno=#{deptno},ename=#{ename},epswd=#{epswd},esex=#{esex},epnum=#{epnum} where empno=#{empno}
 	</update>
 	
 	<delete id="delEmp" parameterType="Integer">
