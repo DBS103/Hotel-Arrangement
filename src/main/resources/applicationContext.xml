@@ -10,11 +10,9 @@
     http://www.springframework.org/schema/context
     http://www.springframework.org/schema/context/spring-context.xsd
     http://www.springframework.org/schema/tx
-<<<<<<< HEAD
     http://www.springframework.org/schema/tx/spring-tx.xsd">
-=======
      http://www.springframework.org/schema/tx/spring-tx.xsd">
->>>>>>> 7b66eef38d3981a7469322f3a33392caafc0285f
+
 
 <!-- 读取jdbc.properties -->
 <context:property-placeholder location="classpath:jdbc.properties" 
@@ -57,7 +55,7 @@
 	<!-- Mapper代理开发(基于MapperFactoryBean) -->
 	<bean id="EmployeeMapper" class="org.mybatis.spring.mapper.MapperFactoryBean">
 		<property name="mapperInterface" value="com.dbs.mapper.EmpMapper"></property>
-<<<<<<< HEAD
+
 
 		<property name="sqlSessionFactory" ref="sqlSessionFactory"></property>
 	</bean>
@@ -67,7 +65,7 @@
 		<!-- 注入SqlSessionFactory的对象实例 -->
 		<property name="sqlSessionFactory" ref="sqlSessionFactory"></property>
 	</bean>
-=======
+
 		<!-- 注入SqlSessionFactory的对象实例 -->
 		<property name="sqlSessionFactory" ref="sqlSessionFactory"></property>
 	</bean>
@@ -86,5 +84,5 @@
 		<property name="omapper" ref="omapper"></property>
 	</bean>
 
->>>>>>> 7b66eef38d3981a7469322f3a33392caafc0285f
+
 </beans>
