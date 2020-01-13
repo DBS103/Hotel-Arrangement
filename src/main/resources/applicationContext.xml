@@ -11,7 +11,7 @@
     http://www.springframework.org/schema/context/spring-context.xsd
     http://www.springframework.org/schema/tx
     http://www.springframework.org/schema/tx/spring-tx.xsd">
-     http://www.springframework.org/schema/tx/spring-tx.xsd">
+   
 
 
 <!-- 读取jdbc.properties -->
@@ -82,9 +82,5 @@
 	<bean id="ordersService" class="com.dbs.service.OrdersServiceImp">
 		<property name="omapper" ref="omapper"></property>
 	</bean>
-<<<<<<< HEAD
-=======
 
-
->>>>>>> e1529c6a43ac71903c81a1a9c332d4415dc8d938
 </beans>

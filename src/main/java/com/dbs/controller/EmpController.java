@@ -17,15 +17,15 @@ public class EmpController {
 	
 	private EmpService empSer = new EmpServiceImpl(); 
 	
-<<<<<<< HEAD
+
 	@Test
 	public void testOne() {
 		System.out.println(this.empSer.findEmpByNo(5));
-=======
+	}
 
 	public Employee findEmpByNo(int empno) {
 		return this.empSer.findEmpByNo(empno);
->>>>>>> 7b66eef38d3981a7469322f3a33392caafc0285f
+
 		
 		
 	}
@@ -40,7 +40,7 @@ public class EmpController {
 		
 	}
 	
-<<<<<<< HEAD
+
 	@Test
 	public void testThree() {
 		ApplicationContext act = new ClassPathXmlApplicationContext("applicationContext.xml");
@@ -69,7 +69,8 @@ public class EmpController {
 		emp.setEpnum("123456");
 		empMapper.editEmp(emp);
 		System.out.println("修改信息成功");
-=======
+	}
+
 	
 	public void editEmp(Employee emp) {
 		
@@ -81,7 +82,7 @@ public class EmpController {
 	public void delEmp(int empno) {
 		this.empSer.delEmp(empno);
 		System.out.println("删除信息成功");
->>>>>>> 7b66eef38d3981a7469322f3a33392caafc0285f
+
 	}
 	
 
