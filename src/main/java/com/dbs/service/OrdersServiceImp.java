@@ -1,13 +1,13 @@
-package com.dbs.serviceImp;
+package com.dbs.service;
 
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 
-import com.dbs.entity.Orders;
-import com.dbs.entity.Outhistory;
-import com.dbs.entity.Room;
+
 import com.dbs.mapper.OrdersMapper;
+import com.dbs.pojo.Orders;
+import com.dbs.pojo.Outhistory;
 import com.dbs.service.OrdersService;
 
 public class OrdersServiceImp implements OrdersService {

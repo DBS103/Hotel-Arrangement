@@ -2,9 +2,9 @@ package com.dbs.mapper;
 
 import java.util.List;
 
-import com.dbs.entity.Orders;
-import com.dbs.entity.Outhistory;
-import com.dbs.entity.Room;
+import com.dbs.pojo.Orders;
+import com.dbs.pojo.Outhistory;
+
 
 public interface OrdersMapper {
 	
