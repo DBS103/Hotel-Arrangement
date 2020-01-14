@@ -110,15 +110,14 @@
 				</label>
 				
 				<input type="button" value="添加" class="btn btn-primary" @click="add" >
-				
-				
 				<br>
 				<label>
 					按姓名搜索:<input type="text" class="form-control" v-model="keywords" v-focus v-color="'green'" >
 				</label>
+				<!-- 
 				<label>
-					按手机号码搜索:<input type="text" class="form-control" v-model="c_pnum" v-focus v-color="'green'" >
-				</label>
+					按手机号码搜索:<input type="text" class="form-control" v-model="kpnum" v-focus v-color="'green'" >
+				</label> -->
 			</div>
 		</div>
 	
@@ -135,16 +134,18 @@
 				</tr>
 			</thead>
 			<tbody>
-				<tr v-for="item in search(keywords)" :key="item.clientno">
-					<td v-text="item.clientno"></td><!--  -->
+				<template v-for="item in search(keywords)":key="item.clientno" >
+					<tr>
+					<td v-text="item.clientno"></td>
 					<td v-text="item.cname"></td>
-					<td v-text="item.cidentity"></td><!--  -->
+					<td v-text="item.cidentity"></td>
 					<td v-text="item.csex"></td>
 					<td v-text="item.cpnum"></td>
 					<!-- click.prevent防止页面刷新 -->
 					<td><a class="perform" href="" @click.prevent="del(item.clientno)">删除</a></td>
 					<td><a class="perform" href="" @click.prevent="upd(item.clientno)">修改</a></td>
-				</tr>
+					</tr>
+				</template>
 			</tbody>
 		</table>
 	</div>
@@ -212,7 +213,7 @@
 				csex:'',
 				cpnum: '',
 				keywords:'',
-				c_pnum:'',
+				kpnum:'',
 				list : [
 					{clientno : 1 , cname : 'lili', cidentity : 1111111, csex : '男' , cpnum : '333'},
 					{clientno : 2 , cname : 'mahan', cidentity : 1111112, csex : '男' , cpnum : '222' }
@@ -220,11 +221,14 @@
 			},
 			methods : {
 				add(){
-					var car = { clientno: this.clientno , cname : this.cname , cidentity : this.cidentity ,csex:this.csex,cpnum:this.cpnum}
-					this.list.push(car)
+					var customer = { clientno: this.clientno , cname : this.cname , cidentity : this.cidentity ,csex:this.csex,cpnum:this.cpnum}
+					this.list.push(customer)
 					//当添加完毕后，让id和name的text框变成空的
 					this.clientno = ""
 					this.cname = ""
+					this.cidentity = ""
+					this.csex = ""
+					this.cpnum = ""
 				},
 				del(clientno){
 					this.list.some((item,i) => {
@@ -243,7 +247,17 @@
 						}
 					})
 					return newList;
+				},
+				search2(kpnum) {
+					var newList = []
+					this.list.forEach(item => {
+						if(item.cname.indexOf(kpnum) != -1) {
+							newList.push(item)
+						}
+					})
+					return newList;
 				}
+				
 			},
 
 			directives : {
