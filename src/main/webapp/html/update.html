@@ -1,47 +1,248 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<!DOCTYPE html>
 <html>
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>修改订房信息管理</title>
-<link rel="stylesheet" href="../css/reserve.css">
+	<meta charset="UTF-8">
+	<title>预订修改信息管理</title>
+	<script src="../js/vue.min.js"></script>
+	<script type="text/javascript" src="../js/jquery.min.js"></script>
+	<script type="text/javascript" src="../js/index.js" ></script>
+	<link rel="stylesheet" href="../css/bootstrap-3.3.7.css">
+	<link rel="stylesheet" href="../css/index.css" />
+	<link rel="stylesheet" href="../css/reserve.css">
+	<meta http-equiv="x-ua-compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width,initial-scale=1.0">
+	<link href="lib/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+	
 </head>
 <body>
+	<div class="s-side">
+	<ul>
+		<!--这部分是导航栏信息。-->
+		<li class="s-firstItem first">
+			<a href="#">
+				<i class="fa fa-home"></i>
+				<span>首页</span>
+			</a>
+		</li>
+		
+		<li class="first">
+			<div class="d-firstNav s-firstNav clearfix">
+				<i class="fa fa-bars"></i>
+				<span>前台</span>
+				<i class="fa fa-caret-right fr "></i>
+			</div>
+			<ul class="d-firstDrop s-firstDrop">
+				<li>
+					<div class="d-secondNav s-secondNav">
+						<i class="fa fa-minus-square-o"></i>
+						<span>预订管理</span>
+						<i class="fa fa-caret-right fr"></i>
+					</div>
+					<ul class="d-secondDrop s-secondDrop">
+						<li class="s-thirdItem">
+							<a class="a" href="select.html">查询预订信息</a>
+						</li>
+						<li class="s-thirdItem">
+							<a class="a" href="insert.html">添加预订信息</a>
+						</li>
+						<li class="s-thirdItem">
+							<a class="a" href="update.html">修改预订信息</a>
+						</li>
+						<li class="s-thirdItem">
+							<a class="a" href="delete.html">删除预订信息</a>
+						</li>
+					</ul>
+				</li>
+				<li>
+					<div class="d-secondNav s-secondNav">
+						<i class="fa fa-minus-square-o"></i>
+						<span>接待管理</span>
+						<i class="fa fa-caret-right fr "></i>
+					</div>
+				</li>
+			</ul>
+		</li>
+		<li class="first">
+			<div class="d-firstNav s-firstNav">
+				<i class="fa fa-bars"></i>	                    
+				<span>房务</span>
+				<i class="fa fa-caret-right fr" ></i>
+			</div>
+		</li>
+		<li class="first">
+			<div class="d-firstNav s-firstNav">
+				<i class="fa fa-bars"></i>	                    
+				<span>收银</span>
+				<i class="fa fa-caret-right fr" ></i>
+			</div>
+		</li>
+		<li class="first">
+			<div class="d-firstNav s-firstNav">
+				<i class="fa fa-bars"></i>	                    
+				<span>权限</span>
+				<i class="fa fa-caret-right fr" ></i>
+			</div>
+		</li>
+	</ul>
+</div>
 
-	<div class="dropdown">
-  		<button class="dropbtn">预订信息管理</button>
-  			<div class="dropdown-content">
-    			<a href="select.html">查询订房信息</a>
-    			<a href="insert.html">添加订房信息</a>
-    			<a href="update.html">修改订房信息</a>
-    			<a href="delete.html">删除订房信息</a>
-    			<a href="reserve.html">回首页</a>
-  			</div>
+	
+  	
+	<div id="app" style="margin-left:260px">
+	
+		<div class="panel panel-primary">
+			<div class="panel-heading">
+				<h3 class="panel-title">酒店预订信息管理</h3>
+			</div>
+			<div class="panel-body form-inline">
+				<label>&nbsp;&nbsp;&nbsp;
+					预&nbsp;订&nbsp;日&nbsp;期&nbsp;:&nbsp;
+					<input type="date" class="form-control" v-model="empno">
+				</label>
+				<label>&nbsp;&nbsp;&nbsp;
+					客&nbsp;户&nbsp;姓&nbsp;名&nbsp;:&nbsp;
+					<input type="text" class="form-control" v-model="ename">
+				</label>
+				&nbsp;&nbsp;&nbsp;
+				<input type="button" value="添加" class="btn btn-primary" @click="add" >
+				&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+				<label>
+					搜&nbsp;索&nbsp;:&nbsp;
+					<input type="text" class="form-control" v-model="keywords" v-focus v-color="'green'" >
+				</label>
+			</div>
 		</div>
-	<form action="" class="update">
-		<center>
-		<table>
-			<tr>
-				<td><br><center><b>修改订房信息</b></center><br></td>
-			</tr>
-			<tr>
-				<td><center>预&nbsp;订&nbsp;编&nbsp;号&nbsp;:&nbsp;<input type="text"></center><br></td>
-			</tr>
-			<tr>
-				<td><center>预&nbsp;订&nbsp;日&nbsp;期&nbsp;:&nbsp;<input type="text"></center><br></td>
-			</tr>
-			<tr>
-				<td><center>客&nbsp;户&nbsp;姓&nbsp;名&nbsp;:&nbsp;<input type="text"></center><br></td>
-			</tr>
-			<tr>
-				<td><center>房&nbsp;&nbsp;&nbsp;&nbsp;间&nbsp;&nbsp;&nbsp;号&nbsp;:&nbsp;<input type="text"></center><br></td>
-			</tr>
+	
+		<table class="table table-borderred table-hover table-striped">
+			<thead>
+				<tr>
+					<th>预&nbsp;订&nbsp;编&nbsp;号</th>
+					<th>预&nbsp;订&nbsp;日&nbsp;期</th>
+					<th>客&nbsp;户&nbsp;姓&nbsp;名</th>
+					<th>房&nbsp;间&nbsp;编&nbsp;号</th>
+					<th>房&nbsp;间&nbsp;号</th>
+					<th>操&nbsp;&nbsp;作</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr v-for="item in search(keywords)" :key="item.empno">
+					<td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{{item.empno}}</td>
+					<td v-text="">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>
+					<td v-text="item.ename">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>
+					<td v-text="">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>
+					<td v-text="">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>
+					<!-- click.prevent防止页面刷新 -->
+					<td>
+						<button type="button" class="btn btn-primary">修改</button>
+						&nbsp;&nbsp;&nbsp;
+						<button type="button" class="btn btn-primary"
+						@click.prevent="del(item.empno)">删除</button>
+					</td>
+				</tr>
+			</tbody>
 		</table>
-		<div class="dropdown2">
-  			<button class="dropbtn4">&nbsp;保&nbsp;&nbsp;&nbsp;存&nbsp;</button>
-  			&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-  			<button class="dropbtn3">&nbsp;重&nbsp;&nbsp;&nbsp;置&nbsp;</button>
-		</div><br><br></center>
-	</form>
+	</div>
+	
 	
 </body>
+<script type="text/javascript">
+	
+		
+		//自定义属性，必须要加v-XXX  这是全局！！！，在new Vue中可以写私有的
+		//使用Vue.directive定义全局的指令 v-focus
+		Vue.directive('focus',{
+			bind : function(el){ //这里一般写css
+				//el.style.color = 'blue'
+			},
+			inserted : function(el){ //这里一般写js
+				el.focus()
+			},
+			updated : function(el){}
+			
+		})
+		
+		//使用Vue.directive定义全局的指令 v-color
+		Vue.directive('color',{
+			bind : function(el,binding){//binding的名字可以改变，只要和下面的对应就行了
+				//el.style.color = 'red'
+				//binding.value = v-color="'green'"中的green
+				//green要加单引号，就像上面‘red’加了单引号一个意思
+				el.style.color = binding.value
+			},
+			inserted : function(el){
+				
+			},
+			updated : function(el){}
+			
+		})
+	
+		var a = new Vue({
+			el : '#app',
+			data : {
+				empno: '',
+				ename: '',
+				edept:'',
+				keywords: '',
+				list : [
+					{empno : 1 , ename : '张三', edept : '前台' },
+					{empno : 2 , ename : '李四', edept : '房管'  },
+					{empno : 3 , ename : '王五', edept : '收银'  },
+					{empno : 4 , ename : '马六', edept : '管理员'  },
+					{empno : 5 , ename : '冯七', edept : '前台'  },
+					{empno : 6 , ename : '周八', edept : '收银'  },
+					{empno : 7 , ename : '小明', edept : '房管'  },
+					{empno : 8 , ename : '小红', edept : '房管'  }
+				]
+			},
+			methods : {
+				add(){
+					var emp = { empno: this.empno , ename : this.ename , edept : this.edept}
+					this.list.push(emp)
+					//当添加完毕后，让id和name的text框变成空的
+					this.empno = ""
+					this.ename = ""
+					this.edept = ""
+				},
+				del(empno){
+					this.list.some((item,i) => {
+						if (item.empno == empno) {
+							//从索引为i的开始删，删除一个
+							this.list.splice(i,1)
+							return true;
+						}
+					})
+				},
+				upd(empno){
+					this.list.some((item,i) =>{
+						if(item.empno == empno){
+							
+						}
+					}) 
+				},
+				search(keywords) {
+					var newList = []
+					this.list.forEach(item => {
+						if(item.ename.indexOf(keywords) != -1) {
+							newList.push(item)
+						}
+					})
+					return newList;
+				}
+			},
+			directives : {
+				//定义私有的属性
+				'font' : {
+					bind : function(el,binding) {
+						el.style.color = binding.value
+					}
+				}
+			}
+			
+		});
+		
+		//刷新页面时，使文本框获得焦点
+		//document.getElementById("search").focus()
+		
+	</script>
+	
 </html>
