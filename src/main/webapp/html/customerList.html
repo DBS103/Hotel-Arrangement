@@ -11,7 +11,7 @@
 	<link rel="stylesheet" href="../css/index.css" />
 </head>
 <body>
-  <div class="s-side">
+  <<div class="s-side">
 	<ul>
 		<!--这部分是导航栏信息。-->
 		<li class="s-firstItem first">
@@ -24,61 +24,60 @@
 		<li class="first">
 			<div class="d-firstNav s-firstNav clearfix">
 				<i class="fa fa-bars"></i>
-				<span>一级菜单1</span>
+				<span>前台</span>
 				<i class="fa fa-caret-right fr "></i>
 			</div>
 			<ul class="d-firstDrop s-firstDrop">
 				<li>
 					<div class="d-secondNav s-secondNav">
 						<i class="fa fa-minus-square-o"></i>
-						<span>二级菜单</span>
+						<span>预订管理</span>
 						<i class="fa fa-caret-right fr"></i>
 					</div>
 					<ul class="d-secondDrop s-secondDrop">
 						<li class="s-thirdItem">
-							<a href="#">三级导航</a>
+							<a class="a" href="select.html">查询预订信息</a>
 						</li>
 						<li class="s-thirdItem">
-							<a href="#">三级导航</a>
+							<a class="a" href="insert.html">添加预订信息</a>
+						</li>
+						<li class="s-thirdItem">
+							<a class="a" href="update.html">修改预订信息</a>
+						</li>
+						<li class="s-thirdItem">
+							<a class="a" href="delete.html">删除预订信息</a>
 						</li>
 					</ul>
 				</li>
 				<li>
 					<div class="d-secondNav s-secondNav">
 						<i class="fa fa-minus-square-o"></i>
-						<span>二级菜单</span>
+						<span>接待管理</span>
 						<i class="fa fa-caret-right fr "></i>
 					</div>
-					<ul class="d-secondDrop s-secondDrop">
-						<li class="s-thirdItem">
-							<a href="#">三级导航</a>
-						</li>
-					</ul>
-				</li>
-				<li class="s-secondItem">
-					<a href="#">
-						<i class="fa fa-minus-square-o"></i>
-						<span>二级导航</span>
-					</a>
 				</li>
 			</ul>
 		</li>
 		<li class="first">
 			<div class="d-firstNav s-firstNav">
 				<i class="fa fa-bars"></i>	                    
-				<span>一级菜单</span>
+				<span>房务</span>
 				<i class="fa fa-caret-right fr" ></i>
 			</div>
-			<ul class="d-firstDrop s-firstDrop">
-				<li class="s-secondItem">
-					<i class="fa fa-minus-square-o"></i>
-					<a href="#">二级导航</a>
-				</li>
-				<li class="s-secondItem">
-					<i class="fa fa-minus-square-o"></i>
-					<a href="#">二级导航</a>
-				</li>
-			</ul>
+		</li>
+		<li class="first">
+			<div class="d-firstNav s-firstNav">
+				<i class="fa fa-bars"></i>	                    
+				<span>收银</span>
+				<i class="fa fa-caret-right fr" ></i>
+			</div>
+		</li>
+		<li class="first">
+			<div class="d-firstNav s-firstNav">
+				<i class="fa fa-bars"></i>	                    
+				<span>权限</span>
+				<i class="fa fa-caret-right fr" ></i>
+			</div>
 		</li>
 	</ul>
 </div>
@@ -111,12 +110,14 @@
 				</label>
 				
 				<input type="button" value="添加" class="btn btn-primary" @click="add" >
-				
-				
 				<br>
 				<label>
 					按姓名搜索:<input type="text" class="form-control" v-model="keywords" v-focus v-color="'green'" >
 				</label>
+				<!-- 
+				<label>
+					按手机号码搜索:<input type="text" class="form-control" v-model="kpnum" v-focus v-color="'green'" >
+				</label> -->
 			</div>
 		</div>
 	
@@ -133,16 +134,18 @@
 				</tr>
 			</thead>
 			<tbody>
-				<tr v-for="item in search(keywords)" :key="item.clientno">
-					<td v-text="item.clientno"></td><!--  -->
+				<template v-for="item in search(keywords)":key="item.clientno" >
+					<tr>
+					<td v-text="item.clientno"></td>
 					<td v-text="item.cname"></td>
-					<td v-text="item.cidentity"></td><!--  -->
+					<td v-text="item.cidentity"></td>
 					<td v-text="item.csex"></td>
 					<td v-text="item.cpnum"></td>
 					<!-- click.prevent防止页面刷新 -->
 					<td><a class="perform" href="" @click.prevent="del(item.clientno)">删除</a></td>
 					<td><a class="perform" href="" @click.prevent="upd(item.clientno)">修改</a></td>
-				</tr>
+					</tr>
+				</template>
 			</tbody>
 		</table>
 	</div>
@@ -210,6 +213,7 @@
 				csex:'',
 				cpnum: '',
 				keywords:'',
+				kpnum:'',
 				list : [
 					{clientno : 1 , cname : 'lili', cidentity : 1111111, csex : '男' , cpnum : '333'},
 					{clientno : 2 , cname : 'mahan', cidentity : 1111112, csex : '男' , cpnum : '222' }
@@ -217,11 +221,14 @@
 			},
 			methods : {
 				add(){
-					var car = { clientno: this.clientno , cname : this.cname , cidentity : this.cidentity ,csex:this.csex,cpnum:this.cpnum}
-					this.list.push(car)
+					var customer = { clientno: this.clientno , cname : this.cname , cidentity : this.cidentity ,csex:this.csex,cpnum:this.cpnum}
+					this.list.push(customer)
 					//当添加完毕后，让id和name的text框变成空的
 					this.clientno = ""
 					this.cname = ""
+					this.cidentity = ""
+					this.csex = ""
+					this.cpnum = ""
 				},
 				del(clientno){
 					this.list.some((item,i) => {
@@ -240,8 +247,19 @@
 						}
 					})
 					return newList;
+				},
+				search2(kpnum) {
+					var newList = []
+					this.list.forEach(item => {
+						if(item.cname.indexOf(kpnum) != -1) {
+							newList.push(item)
+						}
+					})
+					return newList;
 				}
+				
 			},
+
 			directives : {
 				//定义私有的属性
 				'font' : {
