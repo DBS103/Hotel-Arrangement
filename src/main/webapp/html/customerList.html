@@ -117,6 +117,9 @@
 				<label>
 					按姓名搜索:<input type="text" class="form-control" v-model="keywords" v-focus v-color="'green'" >
 				</label>
+				<label>
+					按手机号码搜索:<input type="text" class="form-control" v-model="c_pnum" v-focus v-color="'green'" >
+				</label>
 			</div>
 		</div>
 	
@@ -210,6 +213,7 @@
 				csex:'',
 				cpnum: '',
 				keywords:'',
+				c_pnum:'',
 				list : [
 					{clientno : 1 , cname : 'lili', cidentity : 1111111, csex : '男' , cpnum : '333'},
 					{clientno : 2 , cname : 'mahan', cidentity : 1111112, csex : '男' , cpnum : '222' }
@@ -242,6 +246,7 @@
 					return newList;
 				}
 			},
+
 			directives : {
 				//定义私有的属性
 				'font' : {
