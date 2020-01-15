@@ -82,6 +82,15 @@
 				<span>权限</span>
 				<i class="fa fa-caret-right fr" ></i>
 			</div>
+			<ul class="d-firstDrop s-firstDrop">
+				<li>
+					<div class="d-secondNav s-secondNav">
+						<i class="fa fa-minus-square-o"></i>
+						<span>员工管理</span>
+						<i class="fa fa-caret-right fr"></i>
+					</div>
+				</li>
+			</ul>
 		</li>
 	</ul>
 </div>
@@ -133,7 +142,8 @@
 					<td v-text="">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>
 					<!-- click.prevent防止页面刷新 -->
 					<td>
-						<button type="button" class="btn btn-primary">修改</button>
+						<button type="button" class="btn btn-primary"
+						@click.prevent="upd(item.empno)" class="xiugai">修改</button>
 						&nbsp;&nbsp;&nbsp;
 						<button type="button" class="btn btn-primary"
 						@click.prevent="del(item.empno)">删除</button>
@@ -145,9 +155,9 @@
 	
 	
 </body>
-<script type="text/javascript">
 	
-		
+	<script type="text/javascript">
+	
 		//自定义属性，必须要加v-XXX  这是全局！！！，在new Vue中可以写私有的
 		//使用Vue.directive定义全局的指令 v-focus
 		Vue.directive('focus',{
@@ -213,11 +223,11 @@
 					})
 				},
 				upd(empno){
-					this.list.some((item,i) =>{
-						if(item.empno == empno){
-							
+					this.list.some((item,i) => {
+						if (item.empno == empno) {
+						
 						}
-					}) 
+					})
 				},
 				search(keywords) {
 					var newList = []
