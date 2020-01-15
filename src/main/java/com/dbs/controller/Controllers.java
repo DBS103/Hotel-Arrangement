@@ -26,7 +26,7 @@ public class Controllers {
 	}
 	@RequestMapping(value="/customersel/**")
 	@ResponseBody
-	public List<Customer> customersel(@RequestBody Customer customer) {
+	public List<Customer> customersel() {
 		List<Customer> list = this.customerservice.selectCustomerService();
 		return list;
 	}
