@@ -2,13 +2,10 @@
 <!DOCTYPE configuration PUBLIC "-//mybatis.org//DTD Config 3.0//EN" "http://mybatis.org/dtd/mybatis-3-config.dtd">
 <configuration>
 	
-	<typeAliases>
-		<typeAlias type="com.dbs.pojo.Orders" alias="orders"></typeAlias>
-	</typeAliases>
+	
 	<mappers>
 		<mapper resource="com\dbs\mapper\EmpMapper.xml"/>
 		<mapper resource="com\dbs\mapper\Mapper.xml"/>
-		<mapper resource="com\dbs\mapper\OrdersMapper.xml"/>	
 	</mappers>
 	
 </configuration>
