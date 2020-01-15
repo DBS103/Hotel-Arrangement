@@ -74,7 +74,7 @@
 						<li class="s-thirdItem">
 							<a class="a" href="delete.html">删除预订信息</a>
 						</li>
-					</ul>
+				</ul>
 				</li>
 				<li>
 					<div class="d-secondNav s-secondNav">
@@ -105,6 +105,15 @@
 				<span>权限</span>
 				<i class="fa fa-caret-right fr" ></i>
 			</div>
+			<ul class="d-firstDrop s-firstDrop">
+				<li>
+					<div class="d-secondNav s-secondNav">
+						<i class="fa fa-minus-square-o"></i>
+						<span>员工管理</span>
+						<i class="fa fa-caret-right fr"></i>
+					</div>
+				</li>
+			</ul>
 		</li>
 	</ul>
 </div>
@@ -169,8 +178,13 @@
 					<td v-text="item.csex"></td>
 					<td v-text="item.cpnum"></td>
 					<!-- click.prevent防止页面刷新 -->
-					<td><a class="perform" href="" @click.prevent="del(item.clientno)">删除</a></td>
-					<td><a class="perform" href="" @click.prevent="upd(item.clientno)">修改</a></td>
+					<td>
+						<button type="button" class="btn btn-primary"
+						@click.prevent="upd(item.empno)" class="xiugai">修改</button>
+						&nbsp;&nbsp;&nbsp;
+						<button type="button" class="btn btn-primary"
+						@click.prevent="del(item.empno)">删除</button>
+					</td>
 					</tr>
 				</template>
 			</tbody>
