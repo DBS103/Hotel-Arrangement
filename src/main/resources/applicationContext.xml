@@ -56,7 +56,14 @@
 
 	
 	<!-- Mapper代理开发(基于MapperFactoryBean) -->
+<<<<<<< HEAD
 	
+=======
+	<bean id="EmployeeMapper" class="org.mybatis.spring.mapper.MapperFactoryBean">
+		<property name="mapperInterface" value="com.dbs.mapper.EmpMapper"></property>
+		<property name="sqlSessionFactory" ref="sqlSessionFactory"></property>
+	</bean>
+>>>>>>> branch 'master' of https://github.com/DBS103/Hotel-Arrangement.git
 	
 	<bean id="CustomerMapper" class="org.mybatis.spring.mapper.MapperFactoryBean">
 		<property name="mapperInterface" value="com.dbs.mapper.Mapper"></property>
