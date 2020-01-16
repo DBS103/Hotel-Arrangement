@@ -1,7 +1,8 @@
 package com.dbs.pojo;
 
+import org.springframework.stereotype.Repository;
 
-
+@Repository
 public class Orders {
 
 	private String orderid;

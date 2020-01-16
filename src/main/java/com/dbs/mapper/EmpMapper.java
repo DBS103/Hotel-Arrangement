@@ -1,6 +1,9 @@
 package com.dbs.mapper;
 
+import org.springframework.stereotype.Component;
+
 import com.dbs.pojo.Employee;
+
 
 public interface EmpMapper {
 	

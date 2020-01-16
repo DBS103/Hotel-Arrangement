@@ -2,10 +2,12 @@ package com.dbs.mapper;
 
 import java.util.List;
 
+import org.springframework.stereotype.Component;
+
 import com.dbs.pojo.Orders;
 import com.dbs.pojo.Outhistory;
 
-
+@Component
 public interface OrdersMapper {
 	
 	public Orders selectByEntity(Orders orers);

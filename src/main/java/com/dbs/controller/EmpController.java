@@ -1,6 +1,8 @@
 package com.dbs.controller;
 
-import org.junit.jupiter.api.Test;
+
+
+import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
@@ -15,19 +17,14 @@ import com.dbs.service.EmpServiceImpl;
 @Controller
 public class EmpController {
 	
+	
 	private EmpService empSer = new EmpServiceImpl(); 
 	
-
-	@Test
-	public void testOne() {
-		System.out.println(this.empSer.findEmpByNo(5));
-	}
+	
 
 	public Employee findEmpByNo(int empno) {
 		return this.empSer.findEmpByNo(empno);
-
-		
-		
+	
 	}
 	
 	
@@ -40,36 +37,6 @@ public class EmpController {
 		
 	}
 	
-
-	@Test
-	public void testThree() {
-		ApplicationContext act = new ClassPathXmlApplicationContext("applicationContext.xml");
-		EmpMapper empMapper= act.getBean(EmpMapper.class);
-		Employee emp = new Employee();
-		emp.setEmpno(5);
-		emp.setDeptno("3");
-		emp.setEname("gwh");
-		emp.setEsex("男");
-		emp.setEpswd("123456");
-		emp.setEpnum("123456");
-		empMapper.editEmp(emp);
-		System.out.println("修改信息成功");
-	}
-	
-	@Test
-	public void testFour() {
-		ApplicationContext act = new ClassPathXmlApplicationContext("applicationContext.xml");
-		EmpMapper empMapper= act.getBean(EmpMapper.class);
-		Employee emp = new Employee();
-		emp.setEmpno(5);
-		emp.setDeptno("3");
-		emp.setEname("gwh");
-		emp.setEsex("男");
-		emp.setEpswd("123456");
-		emp.setEpnum("123456");
-		empMapper.editEmp(emp);
-		System.out.println("修改信息成功");
-	}
 
 	
 	public void editEmp(Employee emp) {

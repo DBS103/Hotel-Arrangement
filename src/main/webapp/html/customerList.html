@@ -4,14 +4,16 @@
 <meta charset="UTF-8">
 <title>酒店客户信息管理</title>
 	
-	<link rel="stylesheet" href="../css/bootstrap-3.3.7.css">
 	<script src="../js/vue.min.js"></script>
 	<script type="text/javascript" src="../js/jquery.min.js"></script>
 	<script type="text/javascript" src="../js/index.js" ></script>
+
+	<link rel="stylesheet" href="../css/bootstrap-3.3.7.css">
 	<link rel="stylesheet" href="../css/index.css" />
+	<link rel="Stylesheet" type="text/css" href="../css/EditDialog.css" />
 </head>
 <body>
-  <<div class="s-side">
+  <div class="s-side">
 	<ul>
 		<!--这部分是导航栏信息。-->
 		<li class="s-firstItem first">
@@ -82,7 +84,42 @@
 	</ul>
 </div>
 
-	<div id="app" style="margin-left:210px">
+<div id="EditBox">
+        <div class="row1">
+            修改客户信息<a href="javascript:void(0)" title="关闭窗口" class="close_btn" id="closeBtn">×</a>
+        </div>
+        <div class="row">
+            客户姓名: <span class="inputBox">
+                <input type="text" id="txtName" placeholder="姓名" />
+            </span><a href="javascript:void(0)" title="提示" class="warning" id="warn">*</a>
+        </div>
+        <div class="row">
+           身份证号: <span class="inputBox">
+                <input type="text" id="txtPwd" placeholder="身份证号" />
+            </span><a href="javascript:void(0)" title="提示" class="warning" id="warn2">*</a>
+        </div>
+        <div class="row">
+            客户性别: <span class="inputBox">
+                <input type="text" id="txtPwd1" placeholder="男/女" />
+            </span><a href="javascript:void(0)" title="提示" class="warning" id="warn2">*</a>
+        </div>
+        <div class="row">
+            联系方式: <span class="inputBox">
+                <input type="text" id="txtPwd2" placeholder="联系电话" />
+            </span><a href="javascript:void(0)" title="提示" class="warning" id="warn2">*</a>
+        </div>
+        <div class="row">
+            <a href="#" id="xiugaibtn">确定</a>
+        </div>
+    </div>
+
+
+
+
+
+
+
+	<div id="app" style="margin-left:230px">
 	
 		<div class="panel panel-primary">
 			<div class="panel-heading">
@@ -130,7 +167,7 @@
 					<th>性别</th>
 					<th>手机号码</th>
 					<th>操作</th>
-					<th>操作</th>
+					
 				</tr>
 			</thead>
 			<tbody>
@@ -142,8 +179,8 @@
 					<td v-text="item.csex"></td>
 					<td v-text="item.cpnum"></td>
 					<!-- click.prevent防止页面刷新 -->
-					<td><a class="perform" href="" @click.prevent="del(item.clientno)">删除</a></td>
-					<td><a class="perform" href="" @click.prevent="upd(item.clientno)">修改</a></td>
+					<td><a href="" @click.prevent="del(item.clientno)">删除</a>
+							<a class="xiugai" href=""  @click.prevent="upd(item.clientno)">修改</a></td>
 					</tr>
 				</template>
 			</tbody>
@@ -155,27 +192,100 @@
 	//过滤器的定义语法：
 	//过滤器插值表达式格式 {{cname | 过滤器的名称}}
 	//Vue.filter('过滤器的名称' , function(data){})
+	var customers =new Array() ;
+	$(
+			function(){	
+				
+				selectCustomer();
+				
+			}
+	);
+	function selectCustomer(){
+		$.ajax(
+				{
+					url:"/Hotel1/selCustomer.do",
+					type:"GET",
+					dataType:"json",
+					success:function(data){
+						for(var i in data){
+							customers[i]=data[i];
+						}
+						
+					}
+				}
+			);
+		
+	}
+
+
+	$(function ($) {
+		//弹出框
+		var no;
+		$(".xiugai").on('click',function () {
+			no = $(this).parent().prev().prev().prev().text();
+			alert(no);
+			$("body").append("<div id='mask'></div>");
+			$("#mask").addClass("mask").fadeIn("slow");
+			$("#EditBox").fadeIn("slow");
+			
+		});
 	
-	Vue.filter('dt',function(dateStr){
-		var dt = new Date(dateStr)
 		
-		//yyy-mm-dd
-		var y = dt.getFullYear()
-		//月是从0开始的所以+1
-		//.toString().padStart(2,'0') 表示格式为2位，不足2位在前面添‘0’。这个方法
-		//只认String，所以要先tostring
-		//如果想在后面添值，用.toString().padEnd(2,'0')
-		var m = (dt.getMonth() + 1).toString().padStart(2,'0')
-		var d = dt.getDate().toString().padStart(2,'0')
-		var hh = dt.getHours().toString().padStart(2,'0')
-		var mm = dt.getMinutes().toString().padStart(2,'0')
-		var ss = dt.getSeconds().toString().padStart(2,'0')
-		
-		//return y + '-' + m + '-' +d 
-		//也可以用下面的写法  注意！！这不是单引号''！是esc下面的那个点``
-		return `${y}-${m}-${d} ${hh}:${mm}:${ss}`
-	})
-		
+		//文本框不允许为空---按钮触发
+		$("#xiugaibtn").on('click', function () {
+			
+			var txtName = $("#txtName").val();
+			var txtPwd = $("#txtPwd").val();
+			var txtPwd1 = $("#txtPwd1").val();
+			var txtPwd2 = $("#txtPwd2").val();
+			 $('#tab tr').each(function(i){                   // 遍历 tr
+				$(this).children('td').each(function(j){// 遍历 tr 的各个
+					if($(this).text()==no){
+						$(this).next().text(txtName);
+						$(this).next().next().text(txtPwd);
+						$(this).next().next().next().text(txtPwd1);
+						$(this).next().next().next().next().text(txtPwd2);
+					}
+				 });
+			 });
+			 
+			 $("#EditBox").fadeOut("fast");
+				$("#mask").css({ display: 'none' });
+		});
+		//文本框不允许为空---单个文本触发
+		$("#txtName").on('blur', function () {
+			var txtName = $("#txtName").val();
+			if (txtName == "" || txtName == undefined || txtName == null) {
+				$("#warn").css({ display: 'block' });
+			}
+			else {
+				$("#warn").css({ display: 'none' });
+			}
+		});
+		$("#txtName").on('focus', function () {
+			$("#warn").css({ display: 'none' });
+		});
+		//
+		$("#txtPwd").on('blur', function () {
+			var txtName = $("#txtPwd").val();
+			if (txtName == "" || txtName == undefined || txtName == null) {
+				$("#warn2").css({ display: 'block' });
+			}
+			else {
+				$("#warn2").css({ display: 'none' });
+			}
+		});
+		$("#txtPwd").on('focus', function () {
+			$("#warn2").css({ display: 'none' });
+		});
+		//关闭
+		$(".close_btn").hover(function () { $(this).css({ color: 'black' }) }, function () { $(this).css({ color: '#999' }) }).on('click', function () {
+			$("#EditBox").fadeOut("fast");
+			$("#mask").css({ display: 'none' });
+		});
+	});
+	
+
 		//自定义属性，必须要加v-XXX  这是全局！！！，在new Vue中可以写私有的
 		//使用Vue.directive定义全局的指令 v-focus
 		Vue.directive('focus',{
@@ -214,10 +324,7 @@
 				cpnum: '',
 				keywords:'',
 				kpnum:'',
-				list : [
-					{clientno : 1 , cname : 'lili', cidentity : 1111111, csex : '男' , cpnum : '333'},
-					{clientno : 2 , cname : 'mahan', cidentity : 1111112, csex : '男' , cpnum : '222' }
-				]
+				list :customers
 			},
 			methods : {
 				add(){
@@ -236,6 +343,13 @@
 							//从索引为i的开始删，删除一个
 							this.list.splice(i,1)
 							return true;
+						}
+					})
+				},
+				upd(clientno){
+					this.list.some((item,i) => {
+						if (item.clientno == clientno) {
+							
 						}
 					})
 				},

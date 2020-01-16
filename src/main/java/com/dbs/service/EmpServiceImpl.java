@@ -15,6 +15,8 @@ public class EmpServiceImpl implements EmpService{
 	@Autowired
 	private EmpMapper empMapper;
 
+
+
 	@Override
 	public Employee findEmpByNo(int empno) {
 		ApplicationContext act = new ClassPathXmlApplicationContext("applicationContext.xml");

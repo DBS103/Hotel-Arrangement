@@ -1,7 +1,26 @@
-<!DOCTYPE web-app PUBLIC
- "-//Sun Microsystems, Inc.//DTD Web Application 2.3//EN"
- "http://java.sun.com/dtd/web-app_2_3.dtd" >
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://xmlns.jcp.org/xml/ns/javaee" xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-app_4_0.xsd" id="WebApp_ID" version="4.0">
 
-<web-app>
-  <display-name>Archetype Created Web Application</display-name>
+
+<!-- 从类的路径下加载Spring配置文件，classPath关键字特指路径下加载 -->
+<context-param>
+<param-name>contextConfigLocation</param-name>
+<param-value>classPath:applicationContext.xml</param-value>
+</context-param>
+<servlet>
+<servlet-name>logindemo</servlet-name>
+<servlet-class>org.springframework.web.servlet.DispatcherServlet</servlet-class>
+<!-- <init-param>
+<param-name>contextConfigLocation</param-name>
+<param-value>classPath:Springmvc-config.xml</param-value>
+</init-param> -->
+<!-- 未进行默认参数设置，将xml放在WEB——INF下面可以默认找到 -->
+<load-on-startup>1</load-on-startup>
+</servlet>
+<servlet-mapping>
+<servlet-name>logindemo</servlet-name>
+<!-- 表示对所有的url进行拦截，并交由DispatcherServlet进行处理 -->
+<url-pattern>/</url-pattern>
+</servlet-mapping>
+
 </web-app>
