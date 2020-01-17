@@ -1,5 +1,7 @@
 package com.dbs.service;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
@@ -47,6 +49,14 @@ public class EmpServiceImpl implements EmpService{
 		ApplicationContext act = new ClassPathXmlApplicationContext("applicationContext.xml");
 		this.empMapper= act.getBean(EmpMapper.class);
 		empMapper.delEmp(empno);
+		
+	}
+
+	@Override
+	public List<Employee> selectAll() {
+		ApplicationContext act = new ClassPathXmlApplicationContext("applicationContext.xml");
+		this.empMapper= act.getBean(EmpMapper.class);
+		return empMapper.selectAll();
 		
 	}
 	
