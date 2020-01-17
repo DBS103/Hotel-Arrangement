@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd"> 
+
+<mapper namespace="com.dbs.mapper.OrdersMapper">
+	
+	<select id="selectByEntity" parameterType="orders" resultType="orders">
+		select orderid,empno,clientno,roomid,otime,ocash,otext from Orders where orderid=#{orderid} 
+	</select>
+	<resultMap type="orders" id="order">
+		<id property="orderid" column="orderid" javaType="String" jdbcType="CHAR"></id>
+		<result property="empno" column="empno" javaType="int" jdbcType="INTEGER"></result>
+		<result property="clientno" column="clientno" javaType="String" jdbcType="CHAR"></result>
+		<result property="roomid" column="roomid" javaType="int" jdbcType="INTEGER"></result>
+		<result property="ocash" column="ocash" javaType="int" jdbcType="INTEGER"></result>
+		<result property="otext" column="otext" javaType="String" jdbcType="VARCHAR"></result>
+		<!-- association可以指联合对象 -->
+	</resultMap>
+	
+	<select id="selectAll" resultMap="order">
+		select userId,userName,userPwd from userInfo	
+	</select>	
+	<delete id="deleteOrdersById" parameterType="int">
+	delete from Orders where orderid=#{id}
+	</delete>
+	<insert id="addouthistory" parameterType="com.dbs.pojo.Outhistory"  >
+	insert into outhistory values(#{clientno},#{roomid},#{empno},NOW(),#{cotext});
+	</insert>
+	<update id="updateroom" parameterType="int">
+	update room set rcondition='未入住'  where roomid=#{id}
+	</update>
+	<update id="updateroomtype" parameterType="int">
+	update roomtype set trcount=trcount+1 where typeid in(select typeid from room where roomid=#{id});
+	</update>
+</mapper>
+
+
+
+
+
+
+
