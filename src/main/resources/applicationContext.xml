@@ -15,7 +15,11 @@
     http://www.springframework.org/schema/aop/spring-aop.xsd">
    
 
-
+<context:component-scan base-package="com.dbs.pojo"></context:component-scan>
+    <context:component-scan base-package="com.dbs.service"></context:component-scan>
+    <context:component-scan base-package="com.dbs.mapper"></context:component-scan>
+    <context:component-scan base-package="com.dbs.controller"></context:component-scan>
+    
 <!-- 读取jdbc.properties -->
 <context:property-placeholder location="classpath:jdbc.properties" system-properties-mode="FALLBACK"
     /> 
@@ -51,14 +55,36 @@
 	<property name="configLocation" value="classpath:mybatis-config.xml"></property>
 </bean>
 	<!-- Mapper代理开发(基于MapperFactoryBean) -->
+
 	<bean id="EmployeeMapper" class="org.mybatis.spring.mapper.MapperFactoryBean">
 		<property name="mapperInterface" value="com.dbs.mapper.EmpMapper"></property>
+<<<<<<< HEAD
 		<property name="sqlSessionFactory" ref="sqlSessionFactory"></property>
 	</bean>
 	<bean id="CustomerMapper" class="org.mybatis.spring.mapper.MapperFactoryBean">
 		<property name="mapperInterface" value="com.dbs.mapper.Mapper"></property>
 
 		<!-- 注入SqlSessionFactory的对象实例 -->
+=======
+>>>>>>> branch 'master' of https://github.com/DBS103/Hotel-Arrangement.git
 		<property name="sqlSessionFactory" ref="sqlSessionFactory"></property>
 	</bean>
+<<<<<<< HEAD
+=======
+
+	
+	<bean id="CustomerMapper" class="org.mybatis.spring.mapper.MapperFactoryBean">
+		<property name="mapperInterface" value="com.dbs.mapper.Mapper"></property>
+		<!-- 注入SqlSessionFactory的对象实例 -->
+		<property name="sqlSessionFactory" ref="sqlSessionFactory"></property>
+	</bean>
+
+	
+	<bean id="omapper" class="org.mybatis.spring.mapper.MapperFactoryBean">
+		<property name="mapperInterface" value="com.dbs.mapper.OrdersMapper"></property>
+		<property name="sqlSessionFactory" ref="sqlSessionFactory"></property>
+	</bean>
+	
+
+>>>>>>> branch 'master' of https://github.com/DBS103/Hotel-Arrangement.git
 </beans>

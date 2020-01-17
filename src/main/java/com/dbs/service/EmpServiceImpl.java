@@ -1,5 +1,9 @@
 package com.dbs.service;
 
+<<<<<<< HEAD
+=======
+import java.util.List;
+>>>>>>> branch 'master' of https://github.com/DBS103/Hotel-Arrangement.git
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationContext;
@@ -16,11 +20,13 @@ public class EmpServiceImpl implements EmpService{
 	@Autowired
 	private EmpMapper empMapper;
 
+
+
 	@Override
 	public Employee findEmpByNo(int empno) {
 		ApplicationContext act = new ClassPathXmlApplicationContext("applicationContext.xml");
 		this.empMapper= act.getBean(EmpMapper.class);
-		Employee employee = this.empMapper.findEmpByNo(empno);
+		Employee employee = empMapper.findEmpByNo(empno);
 		return employee;
 	}
 
@@ -28,7 +34,7 @@ public class EmpServiceImpl implements EmpService{
 	public void addEmp(Employee emp) {
 		ApplicationContext act = new ClassPathXmlApplicationContext("applicationContext.xml");
 		this.empMapper= act.getBean(EmpMapper.class);
-		this.empMapper.addEmp(emp);
+		empMapper.addEmp(emp);
 		
 	}
 
@@ -36,7 +42,7 @@ public class EmpServiceImpl implements EmpService{
 	public void editEmp(Employee emp) {
 		ApplicationContext act = new ClassPathXmlApplicationContext("applicationContext.xml");
 		this.empMapper= act.getBean(EmpMapper.class);
-		this.empMapper.editEmp(emp);;
+		empMapper.editEmp(emp);;
 		
 		
 	}
@@ -45,7 +51,15 @@ public class EmpServiceImpl implements EmpService{
 	public void delEmp(int empno) {
 		ApplicationContext act = new ClassPathXmlApplicationContext("applicationContext.xml");
 		this.empMapper= act.getBean(EmpMapper.class);
-		this.empMapper.delEmp(empno);
+		empMapper.delEmp(empno);
+		
+	}
+
+	@Override
+	public List<Employee> selectAll() {
+		ApplicationContext act = new ClassPathXmlApplicationContext("applicationContext.xml");
+		this.empMapper= act.getBean(EmpMapper.class);
+		return empMapper.selectAll();
 		
 	}
 	

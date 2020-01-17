@@ -20,7 +20,7 @@
 <servlet-mapping>
 <servlet-name>logindemo</servlet-name>
 <!-- 表示对所有的url进行拦截，并交由DispatcherServlet进行处理 -->
-<url-pattern>*.html</url-pattern>
+<url-pattern>*.do</url-pattern>
 </servlet-mapping>
 
 </web-app>

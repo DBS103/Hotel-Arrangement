@@ -9,33 +9,7 @@
 	<script type="text/javascript" src="../js/jquery.min.js"></script>
 	<script type="text/javascript" src="../js/index.js" ></script>
 	<link rel="stylesheet" href="../css/index.css" />
-	<script type="text/javascript" src="../js/jquery-3.3.1.js"></script>
-	<script type="text/javascript">
-	$(
-			function(){
-				var username = $('#username').val();
-				 var password = $('#password').val();
-				$.ajax(
-						{
-							url:"${pageContext.request.contextPath}/customersel/customer.html",
-							type: "post",
-							//data表示发送的数据
-							data:JSON.stringify({username:username,password:password}),
-							//定义发送的请求的数据格式为json字符串
-							contentType:"application/json;charset=UTF-8",
-							//定义回调响应的数据格式为json字符串，该属性可以省略
-							dataType:"json",
-							success:function(data){
-								
-								if(data !=null){
-									alert(data);
-								}
-							}
-						}	 
-					 );
-			}
-	)
-	</script>
+		<link rel="Stylesheet" type="text/css" href="../css/EditDialog.css" />
 </head>
 <body>
   <<div class="s-side">

@@ -20,9 +20,9 @@
     
     <!-- 扫描web包 -->
 	<context:component-scan base-package="com.dbs.controller"></context:component-scan>
-	<context:component-scan base-package="com.dbs.service"></context:component-scan>
-	<mvc:annotation-driven/>
 	
+
+	<mvc:annotation-driven/>
 	<!-- 配置静态资源的访问映射，此配置中的文件，将不被前端控制器拦截 -->
 	<mvc:resources location="../js/" mapping="../js/**"/>
 
@@ -32,5 +32,3 @@
 		  p:suffix=".html"
 		  />
 </beans>
-
-
