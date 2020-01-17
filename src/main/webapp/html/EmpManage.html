@@ -122,10 +122,34 @@
     </div>
 
 	<script type="text/javascript">
+	var employee =new Array() ;
+	$(
+			function(){	
+				
+				selectCustomer();
+				
+			}
+	);
+	function selectCustomer(){
+		$.ajax(
+				{
+					url:"/Hotel/selAll.do",
+					type:"GET",
+					dataType:"json",
+					success:function(data){
+						for(var i in data){
+							employee[i]=data[i];
+						}
+						
+					}
+				}
+			);
+		
+	}
 	$(function ($) {
 		//弹出框
 		var no;
-		$(".xiugai").on('click', function () {
+		$(document).on('click','.xiugai', function () {
 			no = $(this).parent().prev().prev().prev().text();
 			
 			$("body").append("<div id='mask'></div>");
@@ -185,6 +209,26 @@
 			$("#mask").css({ display: 'none' });
 		});
 	});
+	
+	$(function($)
+			{$(".deleteone").click(function () {
+		var clientno;
+		empno = $(this).parent().prev().prev().prev().text();
+		jsonno = {empno:empno};
+		jsonstr = JSON.stringify(jsonno);
+		
+		$.ajax(
+		{url:"/Hotel/delemp.do",
+			type: "post",
+			data:jsonstr,
+			//data表示发送的数据,
+			contentType:"application/json;charset=UTF-8",
+			dataType:"json"	
+		}
+	);
+		
+	});
+  });
 	
 	</script>	
 
@@ -284,16 +328,7 @@
 				ename: '',
 				edept:'',
 				keywords: '',
-				list : [
-					{empno : 1 , ename : '张三', edept : '前台' },
-					{empno : 2 , ename : '李四', edept : '房管'  },
-					{empno : 3 , ename : '王五', edept : '收银'  },
-					{empno : 4 , ename : '马六', edept : '管理员'  },
-					{empno : 5 , ename : '冯七', edept : '前台'  },
-					{empno : 6 , ename : '周八', edept : '收银'  },
-					{empno : 7 , ename : '小明', edept : '房管'  },
-					{empno : 8 , ename : '小红', edept : '房管'  }
-				]
+				list : employee
 			},
 			methods : {
 				add(){
