@@ -16,15 +16,14 @@
 		<!-- association可以指联合对象 -->
 	</resultMap>
 	
-	<select id="selectAll" resultMap="order">
-		select userId,userName,userPwd from userInfo	
-	</select>	
+	
 	<delete id="deleteOrdersById" parameterType="int">
 	delete from Orders where orderid=#{id}
 	</delete>
 	<insert id="addouthistory" parameterType="com.dbs.pojo.Outhistory"  >
 	insert into outhistory values(#{clientno},#{roomid},#{empno},NOW(),#{cotext});
 	</insert>
+	
 	<update id="updateroom" parameterType="int">
 	update room set rcondition='未入住'  where roomid=#{id}
 	</update>

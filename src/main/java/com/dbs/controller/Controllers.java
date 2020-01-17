@@ -6,7 +6,7 @@ import java.util.List;
 
 
 import org.springframework.stereotype.Controller;
-
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -25,6 +25,10 @@ import com.dbs.service.ServicesImpl;
 public class Controllers {
 	
 	private Services customerservice= new ServicesImpl();
+	@RequestMapping(value= {"/home/**"})
+	public String home() {
+		return "home";
+	}
 	
 	@RequestMapping(value= {"/customer/**"})
 	public String customer() {
@@ -38,8 +42,8 @@ public class Controllers {
 		System.out.println(customer);
 	}
 	
-	
-	public void addCustomer(Customer customer) {
+	@RequestMapping("/addCustomer")
+	public void addCustomer(@RequestBody Customer customer) {
 		if(this.customerservice.addCustomer(customer)) {
 			System.out.println("插入成功");
 		}else {
@@ -47,15 +51,20 @@ public class Controllers {
 		}
 	}
 	
-	public void deleteCustomerByid(Integer clientno) {
+	@RequestMapping("/delCustomer")
+	public Customer deleteCustomerByid(@RequestBody Customer no) {
+		Integer clientno = no.getClientno();
 		int num = this.customerservice.deleteCustomerByidService(clientno);
 		if(num>0) {
-			System.out.println("删suc");
+			System.out.println("success");
 		}else {
-			System.out.println("未failed");
+			System.out.println("failed");	
 		}
+		return no;
 	}
-	public void updateCustomerByid(Customer customer) {
+	
+	@RequestMapping("/updCustomer")
+	public void updateCustomerByid(@RequestBody Customer customer) {
 		int num = this.customerservice.updateCustomerByidService(customer);
 		if(num>0) {
 			System.out.println("改suc");

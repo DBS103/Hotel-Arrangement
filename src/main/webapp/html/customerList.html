@@ -80,15 +80,6 @@
 				<span>权限</span>
 				<i class="fa fa-caret-right fr" ></i>
 			</div>
-			<ul class="d-firstDrop s-firstDrop">
-				<li>
-					<div class="d-secondNav s-secondNav">
-						<i class="fa fa-minus-square-o"></i>
-						<span>员工管理</span>
-						<i class="fa fa-caret-right fr"></i>
-					</div>
-				</li>
-			</ul>
 		</li>
 	</ul>
 </div>
@@ -188,18 +179,8 @@
 					<td v-text="item.csex"></td>
 					<td v-text="item.cpnum"></td>
 					<!-- click.prevent防止页面刷新 -->
-<<<<<<< HEAD
-					<td><a href="" @click.prevent="del(item.clientno)">删除</a>
-							<a class="xiugai" href=""  @click.prevent="upd(item.clientno)">修改</a></td>
-=======
-					<td>
-						<button type="button" class="btn btn-primary"
-						@click.prevent="upd(item.empno)" class="xiugai">修改</button>
-						&nbsp;&nbsp;&nbsp;
-						<button type="button" class="btn btn-primary"
-						@click.prevent="del(item.empno)">删除</button>
-					</td>
->>>>>>> branch 'master' of https://github.com/DBS103/Hotel-Arrangement.git
+					<td><a href=""  class="deleteone">删除</a>
+							<a class="xiugai" href="">修改</a></td>
 					</tr>
 				</template>
 			</tbody>
@@ -222,7 +203,7 @@
 	function selectCustomer(){
 		$.ajax(
 				{
-					url:"/Hotel1/selCustomer.do",
+					url:"/Hotel/selCustomer.do",
 					type:"GET",
 					dataType:"json",
 					success:function(data){
@@ -237,12 +218,34 @@
 	}
 
 
+	$(function($)
+			{$(".deleteone").click(function () {
+		var clientno;
+		clientno = $(this).parent().prev().prev().prev().prev().prev().text();
+		jsonno = {clientno:clientno};
+		jsonstr = JSON.stringify(jsonno);
+		
+		$.ajax(
+		{url:"/Hotel/delCustomer.do",
+			type: "post",
+			data:jsonstr,
+			//data表示发送的数据,
+			contentType:"application/json;charset=UTF-8",
+			dataType:"json"	
+		}
+	);
+		
+	});
+  });
+
+	
+	
+	
 	$(function ($) {
 		//弹出框
 		var no;
 		$(".xiugai").on('click',function () {
-			no = $(this).parent().prev().prev().prev().text();
-			alert(no);
+			no = $(this).parent().prev().prev().prev().prev().prev().text();
 			$("body").append("<div id='mask'></div>");
 			$("#mask").addClass("mask").fadeIn("slow");
 			$("#EditBox").fadeIn("slow");
@@ -343,13 +346,15 @@
 				cpnum: '',
 				keywords:'',
 				kpnum:'',
-				list :customers
+				list :[{ clientno:1 , cname : 'gwh' , cidentity : '111111' ,csex:'男',cpnum:'111111'},
+					{ clientno:2 , cname : 'bcp' , cidentity : '111112' ,csex:'男',cpnum:'111113'},
+					{ clientno:3 , cname : 'trj' , cidentity : '111113' ,csex:'男',cpnum:'111112'},]
 			},
 			methods : {
 				add(){
 					var customer = { clientno: this.clientno , cname : this.cname , cidentity : this.cidentity ,csex:this.csex,cpnum:this.cpnum}
 					this.list.push(customer)
-					//当添加完毕后，让id和name的text框变成空的
+					//当添加完毕后，让text框变成空的
 					this.clientno = ""
 					this.cname = ""
 					this.cidentity = ""
@@ -365,13 +370,7 @@
 						}
 					})
 				},
-				upd(clientno){
-					this.list.some((item,i) => {
-						if (item.clientno == clientno) {
-							
-						}
-					})
-				},
+				
 				search(keywords) {
 					var newList = []
 					this.list.forEach(item => {

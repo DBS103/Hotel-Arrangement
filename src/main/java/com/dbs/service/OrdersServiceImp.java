@@ -3,8 +3,11 @@ package com.dbs.service;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.ApplicationContext;
+import org.springframework.context.support.ClassPathXmlApplicationContext;
 import org.springframework.stereotype.Service;
 
+import com.dbs.mapper.Mapper;
 import com.dbs.mapper.OrdersMapper;
 import com.dbs.pojo.Orders;
 import com.dbs.pojo.Outhistory;
@@ -21,26 +24,34 @@ public class OrdersServiceImp implements OrdersService {
 
 	@Override
 	public Orders selectByEntity(Orders order) {
-		Orders orders = this.omapper.selectByEntity(order);
-		return orders;
+		ApplicationContext act = new ClassPathXmlApplicationContext("applicationContext.xml");
+		this.omapper = act.getBean(OrdersMapper.class);
+		Orders ord  = omapper.selectByEntity(order);
+		return ord;
 	}
 
 	@Override
 	public List<Orders> selectAll() {
+		ApplicationContext act = new ClassPathXmlApplicationContext("applicationContext.xml");
+		this.omapper = act.getBean(OrdersMapper.class);
 		List<Orders> orderList = omapper.selectAll();
 		return orderList;
 	}
 
 	@Override
 	public boolean addOrders(Orders order) {
-
-		return false;
+		ApplicationContext act = new ClassPathXmlApplicationContext("applicationContext.xml");
+		this.omapper = act.getBean(OrdersMapper.class);
+		boolean flag = omapper.addOrders(order);
+		return flag;
 	}
 
 	@Override
 	public Orders selectById(int orderId) {
-		// TODO Auto-generated method stub
-		return null;
+		ApplicationContext act = new ClassPathXmlApplicationContext("applicationContext.xml");
+		this.omapper = act.getBean(OrdersMapper.class);
+		Orders order =new Orders();
+		return order;
 	}
 
 	@Override
@@ -51,6 +62,8 @@ public class OrdersServiceImp implements OrdersService {
 
 	@Override
 	public boolean deleteOrdersById(Orders orders) {
+		ApplicationContext act = new ClassPathXmlApplicationContext("applicationContext.xml");
+		this.omapper = act.getBean(OrdersMapper.class);
 		boolean flag1=omapper.deleteOrdersById(Integer.parseInt(orders.getOrderid()));
 		Outhistory outhistory=new Outhistory();
 		System.out.println(orders.getClientno().trim());

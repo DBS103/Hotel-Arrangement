@@ -5,47 +5,72 @@ public class Customer {
 	private Integer clientno;
 	private String cname;
 	private String cidentity;
-	private String cpnum;
 	private String csex;
+	private String cpnum;
+	
 	private String ctext;
 	
-	public String getIdentity() {
-		return cidentity;
-	}
-	public void setIdentity(String cidentity) {
-		this.cidentity = cidentity;
-	}
-	public String getSex() {
-		return csex;
-	}
-	public void setSex(String csex) {
-		this.csex = csex;
-	}
-	public String getText() {
-		return ctext;
-	}
-	public void setText(String ctext) {
-		this.ctext = ctext;
-	}
-	public Integer getId() {
+	
+	public Integer getClientno() {
 		return clientno;
 	}
-	public void setId(Integer clientno) {
+
+
+	public void setClientno(Integer clientno) {
 		this.clientno = clientno;
 	}
-	public String getUsername() {
+
+
+	public String getCname() {
 		return cname;
 	}
-	public void setUsername(String cname) {
+
+
+	public void setCname(String cname) {
 		this.cname = cname;
 	}
-	
-	public String getPhone() {
+
+
+	public String getCidentity() {
+		return cidentity;
+	}
+
+
+	public void setCidentity(String cidentity) {
+		this.cidentity = cidentity;
+	}
+
+
+	public String getCsex() {
+		return csex;
+	}
+
+
+	public void setCsex(String csex) {
+		this.csex = csex;
+	}
+
+
+	public String getCpnum() {
 		return cpnum;
 	}
-	public void setPhone(String cpnum) {
+
+
+	public void setCpnum(String cpnum) {
 		this.cpnum = cpnum;
 	}
+
+
+	public String getCtext() {
+		return ctext;
+	}
+
+
+	public void setCtext(String ctext) {
+		this.ctext = ctext;
+	}
+
+
 	@Override
 	public String toString() {
 		return "Customer [clientno=" + clientno + ", cname=" + cname + ", cidentity=" + cidentity

@@ -74,9 +74,6 @@
 		<property name="mapperInterface" value="com.dbs.mapper.OrdersMapper"></property>
 		<property name="sqlSessionFactory" ref="sqlSessionFactory"></property>
 	</bean>
-	<bean id="ordersService" class="com.dbs.service.OrdersServiceImp">
-		<property name="omapper" ref="omapper"></property>
-		
-	</bean>
+	
 
 </beans>
