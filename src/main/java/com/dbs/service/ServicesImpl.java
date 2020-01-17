@@ -5,13 +5,13 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
-
+import org.springframework.stereotype.Service;
 
 import com.dbs.mapper.Mapper;
 import com.dbs.pojo.Customer;
 import com.dbs.pojo.Orders;
 import com.dbs.pojo.Room;
-
+@Service
 public class ServicesImpl implements Services {
 	
 	@Autowired

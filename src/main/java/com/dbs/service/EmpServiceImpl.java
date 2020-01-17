@@ -1,6 +1,9 @@
 package com.dbs.service;
 
+<<<<<<< HEAD
+=======
 import java.util.List;
+>>>>>>> branch 'master' of https://github.com/DBS103/Hotel-Arrangement.git
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationContext;

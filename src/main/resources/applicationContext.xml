@@ -5,12 +5,14 @@
     xmlns:tx="http://www.springframework.org/schema/tx"
     xmlns:context="http://www.springframework.org/schema/context"
     xsi:schemaLocation="
-    http://www.springframework.org/schema/beans
+   http://www.springframework.org/schema/beans
     http://www.springframework.org/schema/beans/spring-beans.xsd
     http://www.springframework.org/schema/context
     http://www.springframework.org/schema/context/spring-context.xsd
     http://www.springframework.org/schema/tx
-    http://www.springframework.org/schema/tx/spring-tx.xsd">
+    http://www.springframework.org/schema/tx/spring-tx.xsd
+    http://www.springframework.org/schema/aop
+    http://www.springframework.org/schema/aop/spring-aop.xsd">
    
 
 <context:component-scan base-package="com.dbs.pojo"></context:component-scan>
@@ -52,15 +54,23 @@
 	<!-- 指定核心配置文件位置 -->
 	<property name="configLocation" value="classpath:mybatis-config.xml"></property>
 </bean>
-
-
-	
 	<!-- Mapper代理开发(基于MapperFactoryBean) -->
 
 	<bean id="EmployeeMapper" class="org.mybatis.spring.mapper.MapperFactoryBean">
 		<property name="mapperInterface" value="com.dbs.mapper.EmpMapper"></property>
+<<<<<<< HEAD
 		<property name="sqlSessionFactory" ref="sqlSessionFactory"></property>
 	</bean>
+	<bean id="CustomerMapper" class="org.mybatis.spring.mapper.MapperFactoryBean">
+		<property name="mapperInterface" value="com.dbs.mapper.Mapper"></property>
+
+		<!-- 注入SqlSessionFactory的对象实例 -->
+=======
+>>>>>>> branch 'master' of https://github.com/DBS103/Hotel-Arrangement.git
+		<property name="sqlSessionFactory" ref="sqlSessionFactory"></property>
+	</bean>
+<<<<<<< HEAD
+=======
 
 	
 	<bean id="CustomerMapper" class="org.mybatis.spring.mapper.MapperFactoryBean">
@@ -76,4 +86,5 @@
 	</bean>
 	
 
+>>>>>>> branch 'master' of https://github.com/DBS103/Hotel-Arrangement.git
 </beans>

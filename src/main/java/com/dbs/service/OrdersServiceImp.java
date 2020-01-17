@@ -3,16 +3,24 @@ package com.dbs.service;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+<<<<<<< HEAD
+import org.springframework.stereotype.Service;
+
+=======
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 import org.springframework.stereotype.Service;
 
 import com.dbs.mapper.Mapper;
+>>>>>>> branch 'master' of https://github.com/DBS103/Hotel-Arrangement.git
 import com.dbs.mapper.OrdersMapper;
 import com.dbs.pojo.Orders;
 import com.dbs.pojo.Outhistory;
 import com.dbs.service.OrdersService;
+<<<<<<< HEAD
+=======
 
+>>>>>>> branch 'master' of https://github.com/DBS103/Hotel-Arrangement.git
 @Service
 public class OrdersServiceImp implements OrdersService {
 
