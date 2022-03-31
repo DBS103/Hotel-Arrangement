@@ -19,7 +19,7 @@
   	<maven.compiler.source>1.10</maven.compiler.source>
   	<maven.compiler.target>1.10</maven.compiler.target>
 >>>>>>> branch 'master' of https://github.com/DBS103/Hotel-Arrangement.git
-  	<org.springframework.version>5.0.0.RELEASE</org.springframework.version>
+  	<org.springframework.version>5.3.18</org.springframework.version>
   </properties>
   
   <dependencies>
